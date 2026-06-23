@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+
+.ipynb_checkpoints/
+
+# Python cache
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Logs
+
+*.log
+logs/
+
+# CatBoost
+
+catboost_info/
+
+# IDE files
+
+.vscode/
+.idea/
+
+# OS files
+
+.DS_Store
+Thumbs.db
