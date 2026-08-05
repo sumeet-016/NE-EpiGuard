@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/NE-EpiGuard/mlflow/834750476248158666/3dc042d98d7b47c18bee1480c22e0f8b/artifacts
+end_time: 1785898336714
+entry_point_name: ''
+experiment_id: '834750476248158666'
+lifecycle_stage: active
+run_id: 3dc042d98d7b47c18bee1480c22e0f8b
+run_name: LightGBM_baseline
+run_uuid: 3dc042d98d7b47c18bee1480c22e0f8b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1785898336372
+status: 4
+tags: []
+user_id: sumee

@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/NE-EpiGuard/mlflow/834750476248158666/76e8f690cc3a420bbf53f8f8da0f864c/artifacts
+end_time: 1785917982136
+entry_point_name: ''
+experiment_id: '834750476248158666'
+lifecycle_stage: active
+run_id: 76e8f690cc3a420bbf53f8f8da0f864c
+run_name: CatBoost_tuned
+run_uuid: 76e8f690cc3a420bbf53f8f8da0f864c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1785917974760
+status: 3
+tags: []
+user_id: sumee

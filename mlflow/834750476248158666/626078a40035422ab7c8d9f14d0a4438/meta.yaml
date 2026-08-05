@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/NE-EpiGuard/mlflow/834750476248158666/626078a40035422ab7c8d9f14d0a4438/artifacts
+end_time: 1785902191223
+entry_point_name: ''
+experiment_id: '834750476248158666'
+lifecycle_stage: active
+run_id: 626078a40035422ab7c8d9f14d0a4438
+run_name: XGBoost_tuned
+run_uuid: 626078a40035422ab7c8d9f14d0a4438
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1785902162991
+status: 3
+tags: []
+user_id: sumee
