@@ -43,3 +43,17 @@ catboost_info/
 
 .DS_Store
 Thumbs.db
+
+
+# MLflow artifacts
+mlflow/
+
+# Trained models
+models/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
