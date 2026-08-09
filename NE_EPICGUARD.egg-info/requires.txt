@@ -17,4 +17,3 @@ imbalanced-learn==0.12.3
 scipy==1.13.1
 ipykernel==6.29.5
 jupyter==1.1.1
--e .
