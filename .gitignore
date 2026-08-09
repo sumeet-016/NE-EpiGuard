@@ -57,3 +57,6 @@ models/
 # Python cache
 __pycache__/
 *.pyc
+
+NE_EPICGUARD.egg-info/
+*.egg-info/
