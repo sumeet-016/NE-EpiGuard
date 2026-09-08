@@ -10,6 +10,12 @@ from sklearn.compose import ColumnTransformer
 from src.exception import CustomException
 from src.logger import logging
 from src.components.feature_engineering import FeatureEngine
+from utils import (
+    save_object,
+    apply_ordinal_encoding,
+    apply_cyclic_encoding,
+    apply_log_transformer
+)
 
 
 @dataclass
@@ -78,22 +84,20 @@ class DataTransformation:
         try:
             train_df = pd.read_csv(train_path)
             test_df  = pd.read_csv(test_path)
-            logging.info("Train and test data loaded")
+            logging.info(f"Train data: {train_df.shape}, Test Data: {test_df.shape}")
 
 
-            # Cyclical encoding for month
-            for df in [train_df, test_df]:
-                df['month_sin'] = np.sin(2 * np.pi * df['month'] / 12)
-                df['month_cos'] = np.cos(2 * np.pi * df['month'] / 12)
-                df.drop(columns=['month'], inplace=True)
+            # Step 1 - Cyclic encoding
+            train_df    = apply_cyclic_encoding(train_df)
+            test_df     = apply_cyclic_encoding(test_df)
 
+            # Step 2 - Ordinal encoding
+            train_df    = apply_ordinal_encoding(train_df)
+            test_df     = apply_ordinal_encoding(test_df)
 
-            # Log transform skewed columns
-            log_cols = ['fecal_coliform_per_100ml', 'total_coliform_per_100ml']
-            for df in [train_df, test_df]:
-                for col in log_cols:
-                    df[col] = np.log1p(df[col])
-
+            # Step 3 - Log Transformation
+            train_df    = apply_ordinal_encoding(train_df)
+            test_df     = apply_log_transformer(test_df)
 
             # Feature engineering
             fe = FeatureEngine()
@@ -108,7 +112,6 @@ class DataTransformation:
             y_test  = le.transform(test_df[target_col])
 
 
-
             # Save target encoder
             os.makedirs(os.path.dirname(
                 self.transformation_config.target_encoder_file_path),
@@ -121,11 +124,9 @@ class DataTransformation:
             logging.info("Target encoder saved")
 
 
-
             # Drop target from features
             X_train = train_df.drop(columns=[target_col])
             X_test  = test_df.drop(columns=[target_col])
-
 
 
             # Fit preprocessor
@@ -135,11 +136,9 @@ class DataTransformation:
             logging.info("Preprocessing done")
 
 
-
             # Save preprocessor
             with open(self.transformation_config.preprocessor_obj_file_path, 'wb') as f:
                 dill.dump(preprocessor, f)
-
 
             logging.info("Preprocessor saved to artifacts/preprocessor.pkl")
 
