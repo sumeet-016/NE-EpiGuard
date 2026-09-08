@@ -4,6 +4,7 @@ import dill
 from src.exception import CustomException
 from src.logger import logging
 import numpy as np
+import pandas as pd
 
 
 # ─── Ordinal Mappings ────────────────────────────────────────────
@@ -117,11 +118,12 @@ def apply_log_transformer(data):
 
         log_cols = [
             'fecal_coliform_per_100ml',
-            'total_coliform_100ml'
+            'total_coliform_per_100ml'
         ]
 
         for col in log_cols:
-            data[col] = np.log1p(data)
+            data[col] = pd.to_numeric(data[col], errors='coerce')
+            data[col] = np.log1p(data[col])
 
         logging.info('Log Transformation Completed')
         return data

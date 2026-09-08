@@ -1,11 +1,9 @@
 # Byte-compiled / optimized / DLL files
-
-**pycache**/
+__pycache__/
 *.py[cod]
 *$py.class
 
 # Virtual environments
-
 .env
 .envrc
 .venv
@@ -16,47 +14,32 @@ env.bak/
 venv.bak/
 
 # Jupyter Notebook
-
 .ipynb_checkpoints/
 
 # Python cache
-
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+*.pyc
 
 # Logs
-
 *.log
 logs/
 
 # CatBoost
-
 catboost_info/
 
 # IDE files
-
 .vscode/
 .idea/
 
 # OS files
-
 .DS_Store
 Thumbs.db
-
 
 # MLflow artifacts
 mlflow/
 
-# Trained models
-models/
-
-# Jupyter checkpoints
-.ipynb_checkpoints/
-
-# Python cache
-__pycache__/
-*.pyc
-
+# Egg info
 NE_EPICGUARD.egg-info/
 *.egg-info/
