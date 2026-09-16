@@ -260,7 +260,3 @@ GitHub: [sumeet-016](https://github.com/sumeet-016)
 ## License
 
 MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-*Built as a production-grade portfolio project targeting Data Scientist roles at GCC companies.*
