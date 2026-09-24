@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import pdfplumber
+import time
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
@@ -11,9 +12,9 @@ from src.exception import CustomException
 load_dotenv()
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-3.6-flash",
+    model="gemini-3.7-flash",
     google_api_key=os.getenv("GOOGLE_API_KEY"),
-    temperature=0.6
+    temperature=0.3
 )
 
 STATE_HELPLINES = {
@@ -54,6 +55,7 @@ def extract_text_from_pdf(pdf_file) -> str:
 def extract_data_from_pdf(pdf_file) -> dict:
     try:
         pdf_text = extract_text_from_pdf(pdf_file)
+        time.sleep(2)
 
         prompt = PromptTemplate(
             input_variables=["pdf_text"],
@@ -86,7 +88,11 @@ Return only JSON:
             result = result.split("```")[1]
             if result.startswith("json"):
                 result = result[4:]
-        result = result.strip()
+
+
+        if hasattr(result, 'content'): result = result.content.strip()
+        elif isinstance(result, list): result = result[0].content.strip() if result else ""
+        else: result = str(result).strip()
 
         data = json.loads(result)
         logging.info("Data extracted from PDF successfully")
@@ -191,7 +197,10 @@ Simple language, culturally appropriate for Northeast India. No medical jargon.
         })
 
         logging.info("Health advisory generated successfully")
-        return result.content.strip()
+
+        if hasattr(result, 'content'): return result.content.strip()
+        elif isinstance(result, list): return result[0].content.strip() if result else ""
+        else: return str(result).strip()
 
     except Exception as e:
         raise CustomException(e, sys)
